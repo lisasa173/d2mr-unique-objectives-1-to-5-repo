@@ -1,0 +1,366 @@
+---
+title: "Level 1 Data Visualization: Plot the mtcars Dataset"
+format: html
+---
+
+# Objective
+
+The objective of this assignment is to practice constructing simple visualizations using the `ggplot2` package in R. In this Level 1 assignment, you will work with simple datasets and focus on the most commonly used layers and aesthetics. Most tasks are outlined in the assignment script. You may want to review the [Data Visualization Walkthrough](../00_viz-walkthrough) before you begin.
+
+You may additionally or alternatively complete the [Level 2 Data Visualization assignment](../02_viz-level-2). In Level 2, you will work with a more complex dataset and perform additional visualization tasks with less direct instruction. The Level 2 assignment has more opportunities to demonstrating meeting course standards than this Level 1 assignment and is recommended for those who are already comfortable with the tasks in this assignment. In particular, the Level 2 assignment requires you to parse and use the `theme()` layer in complicated ways to customize the appearance of your plots.
+
+# Instructions
+
+1. If you have not already done so, pull the latest changes from the `d2mr-assessment` repository to ensure you have the most up-to-date version of the assignment files. Confirm you are working in your clone of the repository.
+2. Open `viz-level-1.qmd` in RStudio (you are here) and follow the instructions in the Setup section below to load and inspect the built-in `mtcars` dataset.
+    - **Note:** You will perform simple data transformation in a chunk below to prepare the `mtcars` dataset for visualization. Save your transformed dataset to a new object, `mtcars.viz`, so you can still access the original dataset if needed.
+3. In the chunks provided, recreate each of the 6 plots (provided as .png files). You may need to render this notebook to see the images, or you can open the files directly. Recreate the plots as closely as possible, noting where you get stuck or have questions.
+    - **Note:** The image files are included in the assessment repo in the `03_data-viz/01_viz-level-1/plots/` folder. If you don't see the files, you may have something in your .gitignore preventing them from being pulled. You can either edit your .gitignore to allow the files to be pulled or download the files directly from the GitHub repository.
+4. At several points in this document you will come across questions or non-coding exercises. Answer these questions in the text of this .qmd document, immediately below the question.
+5. *Optional:* Create additional plots using the `mtcars.viz` dataset or extend one or more of the plots above. Add your code to the "Optional plotting" section at the end of the document. Do not add this optional work to the main code chunks that recreate the plot images.
+
+## Setup
+
+```{r}
+
+#| label: libraries-seed
+
+library(tidyverse)
+set.seed(123)
+```
+
+Inspect the `mtcars` dataset:
+
+```{r}
+
+#| label: inspect-mtcars
+
+## Look at the structure and first few rows of the mtcars dataset
+str(mtcars)
+head(mtcars)
+view(mtcars)
+?mtcars
+```
+
+The names of the variables in the `mtcars` dataset may not be immediately clear. You can find a description of the variables in the `mtcars` dataset by running `?mtcars` in the R console.
+
+Consider the structure of the dataset, particularly the datatypes of each variable. Based on the descriptions of each variable in the documentation, not all variables are in the most appropriate format for analysis or visualization. 
+
+QUESTIONS:
+
+1. Which variables in the `mtcars` dataset should be treated as numeric variables? 
+
+<!-- answer below -->
+mpg; cyl; disp; hp; wt; qsec; gear; carb; vs; am
+
+2. Of those you believe should be considered numeric, are they all also *continuous* variables? Are there any *non-continuous* numeric variables?
+
+<!-- answer below -->
+continuous: mpg; cyl; disp; hp; wt; qsec; gear; carb
+categorical: vs; am
+
+3. Which variables in the `mtcars` dataset should be treated as factor variables?
+
+<!-- answer below -->
+vs; am
+
+4. Of those you believe should be considered factors, are they ordered or unordered? 
+
+<!-- answer below -->
+Both are unordered.
+
+## Data preparation
+
+Based on your inspection of the `mtcars` dataset and your answers to the above questions, use `dplyr`, `tidyr`, and `forcats` functions to prepare the dataset for visualization.
+
+You will need to change the data types for some variables. You may also want to rename variables and factor levels for clarity. Renaming variables and levels now can make your visualization simpler later, but you can do it directly in the your plotting functions, too.
+
+```{r}
+
+#| label: prepare-mtcars
+
+## Prepare the mtcars dataset for visualization
+
+## Assign your wrangled data to a new object `mtcars.viz` so you have access 
+## to the original if needed
+mtcars.viz <- as_tibble(mtcars)
+
+#mtcars.viz <- mtcars %>%
+  # Optionally, rename variables for clarity
+mtcars.viz %>% rename (miles_per_g = mpg,
+                       cylinders = cyl,
+                       displacement = disp,
+                       horsepower = hp,
+                       rear_axle_ratio = drat,
+                       weight = wt,
+                       mile_time = qsec,
+                       engine = vs,
+                       transmission = am)
+
+  # Change data types as needed
+  # Optionally, rename factor levels for clarity as needed
+mtcars.viz <- mtcars.viz %>% rename (miles_per_g = mpg,
+                       cylinders = cyl,
+                       displacement = disp,
+                       horsepower = hp,
+                       rear_axle_ratio = drat,
+                       weight = wt,
+                       mile_time = qsec,
+                       engine = vs,
+                       transmission = am) %>%
+  mutate (engine = as.factor (engine),
+          transmission = as.factor(transmission))
+```
+
+
+## Basic Plots
+
+Plots 1-3 require only data, aesthetics, and geoms. Depending on how you prepared your data above, you may also need to do very simple (~1 line) transformation on `mtcars.viz` before piping into the `ggplot()` function.
+
+### Histogram
+
+Recreate this histogram of car weight:
+
+![Histogram of car weight](plots/plot1.png)
+
+```{r}
+
+#| label: plot1-histogram
+
+mtcars.viz %>%
+  ggplot (aes (x = weight)) + 
+  geom_histogram (binwidth = 0.5) +
+  theme_minimal() +
+  labs (title = "Counting by weight", x = "Weight", y = "Number of cars")
+
+```
+
+### Bar plot
+
+Recreate this bar plot of the number of cylinders:
+
+![Bar plot of cylinder count](plots/plot2.png)
+
+```{r}
+
+#| label: plot2-barplot
+#I used forcats here!
+mtcars.viz %>% 
+  mutate (cylinders = as.factor (cylinders)) %>%
+  mutate (cylinders = fct_relevel (cylinders, c("8", "4", "6"))) %>%
+  ggplot (aes (x = cylinders)) +
+  geom_bar(fill = "skyblue") +
+  ylim (c(0,15)) +
+  theme_minimal() +
+  labs (x = "Number of cylinders", y = "Number of cars")
+
+
+```
+
+### Scatter plot
+
+Recreate this scatter plot of car weight vs. miles per gallon:
+
+![Scatter plot of car weight vs. miles per gallon](plots/plot3.png)
+
+```{r}
+
+#| label: plot3-scatterplot
+
+mtcars.viz %>% 
+  ggplot (aes (x = weight, y = miles_per_g)) +
+  geom_point(color = "skyblue") +
+  theme_minimal()
+
+```
+
+## Intermediate Plots
+
+The following three plots require additional layers or aesthetics beyond the basic plots above, and may require some additional simple data transformation. 
+
+### Box plot
+
+Recreate this box plot of miles per gallon by number of cylinders, with points showing the distribution:
+
+![Box plot of miles per gallon by number of cylinders](plots/plot4.png)
+
+What transformation, if any, do you need to make to the data before piping it into `ggplot()`?
+
+<!-- answer below -->
+turn cylinder into a factor variable and reorder the cylinder into 8, 4, 6.
+
+What geoms and aesthetics are used in this plot? Does layer order matter, and if so, how?
+
+<!-- answer below -->
+data points should lie above the scatterplot, so first geom_boxplot and then datapoints
+
+What additional information is required to produce this plot? What layers or aesthetics would you need to add to the plot to include this information?
+
+<!-- answer below -->
+the mean for each cylinder type & the standard deviation.
+
+
+```{r}
+
+#| label: plot4-boxplot
+
+mtcars.viz %>% 
+  mutate (cylinders = as.factor (cylinders)) %>%
+  mutate (cylinders = fct_relevel (cylinders, c("8", "4", "6"))) %>% 
+  ggplot (aes (x = cylinders, y = miles_per_g, fill = cylinders)) +
+  geom_boxplot() +
+  geom_point() +
+  theme_minimal ()
+```
+
+
+### Faceted scatter plot
+
+Recreate this faceted scatter plot of car weight vs. displacement, with regression lines for each facet:
+
+![Faceted scatter plot of car weight vs. displacement](plots/plot5.png)
+
+What transformation, if any, do you need to make to the data before piping it into `ggplot()`?
+
+<!-- answer below -->
+MPG has to be separated into low & high
+
+What geoms and aesthetics are used in this plot? Does layer order matter, and if so, how?
+
+<!-- answer below -->
+color fill, line fill, line style.
+
+What additional information is required to produce this plot? What layers or aesthetics would you need to add to the plot to include this information?
+
+<!-- answer below -->
+standard deviation (grey area), slope & intercept
+
+
+```{r}
+
+#| label: plot5-faceted-scatterplot
+
+library (grid)
+
+mtcars.viz %>%
+  mutate (low_high_mpg = ifelse(miles_per_g > mean(miles_per_g), "high mpg", "low mpg")) %>%
+  ggplot (aes (x = weight, y = displacement)) +
+  geom_point(color = "purple", shape = 2) +
+  facet_wrap(~ low_high_mpg) +
+  geom_smooth (method = "lm", se = TRUE, color = "skyblue", linetype = "dashed") +
+  theme_minimal() +
+  xlim (c(0, 6)) +
+  labs (title = "Love this analysis") 
+  
+#I don't know how to add the title on the top left & bottom right corners. The following lines don't work:
+#+
+#  annotation_custom(
+ #   grob = textGrob("Explanation: The boxplots show distribution of highway mileage.", 
+  #                  gp = gpar(fontsize = 8, col = "black")),
+   # xmin = Inf, xmax = Inf, ymin = -Inf, ymax = -Inf)
+```
+
+
+### Stacked bar plot
+
+Recreate this stacked bar plot of transmission type by weight class:
+
+![Stacked bar plot of transmission type by weight class](plots/plot6.png)
+
+What transformation, if any, do you need to make to the data before piping it into `ggplot()`?
+
+<!-- answer below -->
+We need to categorize weight from class 1-5 & reorder the classes. Then, we need to assign auto & manual to the transmission variable.
+
+What geoms and aesthetics are used in this plot? Does layer order matter, and if so, how?
+
+<!-- answer below -->
+Perhaps we can use barplot. The point is to reorder classes by frequency from lowest and highest.
+
+What additional information is required to produce this plot? What layers or aesthetics would you need to add to the plot to include this information?
+
+<!-- answer below -->
+
+```{r}
+
+#| label: plot6-stacked-barplot
+library(tidyverse)
+view (mtcars.viz)
+mtcars.viz %>% mutate (auto_or_man = ifelse (transmission == "1", "Man.", "Auto"))
+
+#Attempt 1: to output five classes (didn't work)
+Class_output <- function (weight) {
+  if (weight < 2) {class <- "Class 1"}
+  else if (weight >= 2.1 && weight <= 3) {class <- "Class 2"}
+  else if (weight >= 3.1 && weight <= 4) {class <- "Class 3"}
+  else if (weight >= 4.1 && weight <= 5) {class <- "Class 4"}
+  else if (weight > 5) {class <- "Class 5"}
+  print (class)
+} 
+?mtcars
+
+#Attempt 2 using case_when worked!
+#I used forcats here!
+mtcars.viz %>% mutate (auto_or_man = fct_recode(transmission, "Man." = "1", "Auto" = "0")) %>%
+  mutate (weight = case_when (
+  weight < 2 ~ "Class 1 (<2)",
+  weight >=2 & weight <= 3 ~ "Class 2 (2.1-3)",
+  weight >=3 & weight <= 4 ~ "Class 3 (3.1-4)",
+  weight >=4 & weight <= 5 ~ "Class 4 (4.1-5)",
+  weight >5 ~ "Class 5 (>5)"
+)) %>% 
+  mutate(weight = factor(weight, levels = names(sort(table(weight), decreasing = TRUE)))) %>%
+  ggplot (aes (x = weight, fill = auto_or_man)) +
+  geom_bar () +
+  coord_flip () + 
+  theme_minimal() +
+  guides(fill = guide_legend(title = "Transmission Type")) +
+  labs (caption = "weight class ordered by total frequency",
+        x = "Weight class (sorted)",
+        title = "Distribution of transmission types by weight class") +
+  theme(axis.title.x = element_blank (),
+        axis.text = element_text(colour = "steelblue", face = "italic",
+family = "Times New Roman"))
+
+```
+
+# Review
+
+1. Which plots were you able to fully recreate successfully? Did you encounter any challenges along the way?
+
+<!-- answer below -->
+I created all of them.
+2. Which plots were you only partially able to recreate? What challenges did you encounter that limited your ability to fully recreate the plot? What additional information or skills would you need to complete the plot?
+
+<!-- answer below -->
+I need to know what color scheme was used in the original plot 4.
+
+# Optional plotting
+
+If you have time and would like to practice more, try creating one or more plots of own design using the `mtcars.viz` dataset or adding to one of the plots above. You can use any combination of geoms, aesthetics, and layers you like. Whether you start from scratch or build on an existing plot, create your plots in code chunks below. (Leave the chunks above as your work recreating the plots as-is.)
+
+For each optional plot you create or extend, include a brief description of the plot below the chunk and any additional information you think is relevant.
+
+```{r}
+
+#| label: optional-plot-1
+
+## Your code here
+
+```
+
+
+
+# Submission & Assessment
+
+To submit:
+
+1. Add & modify the `assessment.md` in this mini-project's directory:
+    1. Check off all objectives you believe you have demonstrated
+    2. Indicate which objectives you are meeting for the first time (if any)
+    3. Complete any relevant open-ended items
+2. Push your changes to your centralized assignment repository on GitHub. 
+3. Confirm that Dr. Dowling and your section TA are added as collaborators to your repository.
+4. Submit your work in your next open mini-project assignment by including the following information in the text box:
+    1. The title of the assignment: "Level 1 Data Visualization: Plot the mtcars Dataset"
+    2. A link to the **directory** for this assignment in your centralized assignment repo
