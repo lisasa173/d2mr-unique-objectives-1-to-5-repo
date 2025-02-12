@@ -19,19 +19,21 @@ You may additionally or alternatively complete the [Level 2 Data Visualization a
 4. At several points in this document you will come across questions or non-coding exercises. Answer these questions in the text of this .qmd document, immediately below the question.
 5. *Optional:* Create additional plots using the `mtcars.viz` dataset or extend one or more of the plots above. Add your code to the "Optional plotting" section at the end of the document. Do not add this optional work to the main code chunks that recreate the plot images.
 
-## Setup
+## Setup 1
 
-```{r}
+```{r include=TRUE}
 
 #| label: libraries-seed
 
 library(tidyverse)
 set.seed(123)
+
+source ("Class_output.R")
 ```
 
 Inspect the `mtcars` dataset:
 
-```{r}
+```{r include=TRUE}
 
 #| label: inspect-mtcars
 
@@ -75,7 +77,7 @@ Based on your inspection of the `mtcars` dataset and your answers to the above q
 
 You will need to change the data types for some variables. You may also want to rename variables and factor levels for clarity. Renaming variables and levels now can make your visualization simpler later, but you can do it directly in the your plotting functions, too.
 
-```{r}
+```{r echo = TRUE}
 
 #| label: prepare-mtcars
 
@@ -123,7 +125,7 @@ Recreate this histogram of car weight:
 
 ![Histogram of car weight](plots/plot1.png)
 
-```{r}
+```{r echo = TRUE}
 
 #| label: plot1-histogram
 
@@ -141,7 +143,7 @@ Recreate this bar plot of the number of cylinders:
 
 ![Bar plot of cylinder count](plots/plot2.png)
 
-```{r}
+```{r echo = TRUE}
 
 #| label: plot2-barplot
 #I used forcats here!
@@ -163,7 +165,7 @@ Recreate this scatter plot of car weight vs. miles per gallon:
 
 ![Scatter plot of car weight vs. miles per gallon](plots/plot3.png)
 
-```{r}
+```{r echo = TRUE}
 
 #| label: plot3-scatterplot
 
@@ -200,7 +202,7 @@ What additional information is required to produce this plot? What layers or aes
 the mean for each cylinder type & the standard deviation.
 
 
-```{r}
+```{r echo = TRUE}
 
 #| label: plot4-boxplot
 
@@ -236,9 +238,10 @@ What additional information is required to produce this plot? What layers or aes
 standard deviation (grey area), slope & intercept
 
 
-```{r}
+```{r echo = TRUE}
 
 #| label: plot5-faceted-scatterplot
+#| fig-cap: "Weight vs. displacement by MPG category"
 
 library (grid)
 
@@ -250,7 +253,7 @@ mtcars.viz %>%
   geom_smooth (method = "lm", se = TRUE, color = "skyblue", linetype = "dashed") +
   theme_minimal() +
   xlim (c(0, 6)) +
-  labs (title = "Love this analysis") 
+  labs (caption = "I definitely know thing about cars.") 
   
 #I don't know how to add the title on the top left & bottom right corners. The following lines don't work:
 #+
@@ -281,7 +284,7 @@ What additional information is required to produce this plot? What layers or aes
 
 <!-- answer below -->
 
-```{r}
+```{r echo = TRUE, fig.cap="Figure 6: Stacked barplot of frequency by weight class categorized by automatic or manual transmission type"}
 
 #| label: plot6-stacked-barplot
 library(tidyverse)
@@ -289,15 +292,7 @@ view (mtcars.viz)
 mtcars.viz %>% mutate (auto_or_man = ifelse (transmission == "1", "Man.", "Auto"))
 
 #Attempt 1: to output five classes (didn't work)
-Class_output <- function (weight) {
-  if (weight < 2) {class <- "Class 1"}
-  else if (weight >= 2.1 && weight <= 3) {class <- "Class 2"}
-  else if (weight >= 3.1 && weight <= 4) {class <- "Class 3"}
-  else if (weight >= 4.1 && weight <= 5) {class <- "Class 4"}
-  else if (weight > 5) {class <- "Class 5"}
-  print (class)
-} 
-?mtcars
+Class_output (2.1)
 
 #Attempt 2 using case_when worked!
 #I used forcats here!
@@ -341,7 +336,7 @@ If you have time and would like to practice more, try creating one or more plots
 
 For each optional plot you create or extend, include a brief description of the plot below the chunk and any additional information you think is relevant.
 
-```{r}
+```{r eval = FALSE, include = FALSE}
 
 #| label: optional-plot-1
 
