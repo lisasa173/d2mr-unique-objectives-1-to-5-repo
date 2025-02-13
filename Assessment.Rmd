@@ -60,7 +60,7 @@ Below each learning objective is a list of general expectations for meeting that
     3.  Does not have duplicate/redundant elements
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments: 
 
@@ -70,7 +70,7 @@ Below each learning objective is a list of general expectations for meeting that
     2.  Outlines the repo structure with file tree or similar
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -80,7 +80,7 @@ Below each learning objective is a list of general expectations for meeting that
     2.  .gitignore comprehensively excludes unnecessary, private, and very large files and is be commeted appropriately
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -90,7 +90,7 @@ Below each learning objective is a list of general expectations for meeting that
     2.  Relies on document revisions rather than manually created new versions
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -232,7 +232,7 @@ Below each learning objective is a list of general expectations for meeting that
     3. Presents results in narrative text, table, or plot
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -307,7 +307,7 @@ Below each learning objective is a list of general expectations for meeting that
     4. Organizes setup chunks sensibly
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -320,7 +320,7 @@ Below each learning objective is a list of general expectations for meeting that
     5. References render without error and link to the correct table/figure in pdf/html output
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -344,7 +344,7 @@ Below each learning objective is a list of general expectations for meeting that
     1. Includes all necessary metadata, output options, and formatting options necessary to render an APA styled document (or other specified style if appropriate for the project)
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -356,7 +356,7 @@ Below each learning objective is a list of general expectations for meeting that
     4. Includes at least 1 footnote
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -432,7 +432,7 @@ You are not required to demonstrate these objectives in your independent project
 If you believe you have demonstrated any of the above skills sufficiently to count toward the 20 additional objectives-based points, please indicate which objective(s) you believe you have met and provide a brief explanation of how you have met each objective.
 
 <!-- Explanation of demonstrated unassessed objectives below this line -->
-
+I think I've met objectives 12, 15, & 16 in this mini-assignment. For 12, I can differentiate between numeric and non-numeric data. For 15, I can recognize histogram, barplot, scatterplots with regression lines, and create graphs by the interpretations I need (e.g., compare the means of MPG by cylinder type). For 16, I know what graph to draw for the specific question (e.g., What are corresponding levels of MPG when the car has 4, 6, or 8 cylinders?).
 
 <!-- Explanation of demonstrated unassessed objectives above this line -->
 
@@ -456,10 +456,7 @@ Thoughtful reflections may earn engagement points.
 <!-- Reflection below this line -->
 
 
-
-
-
-
+I learnt to visualize descriptive data, to use appropriate graphs for a specific question, to make the graphs look beautiful, and to use APA style to render graphs.
 
 
 
