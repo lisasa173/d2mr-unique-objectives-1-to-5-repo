@@ -1,5 +1,5 @@
 ---
-title: "viz-level-1_assessment"
+title: "data-visualization-assessment"
 output: html_document
 ---
 
@@ -22,15 +22,15 @@ CNetID: 40808265M
 
 Section: 1
 
-Mini-project title: viz-level-1.qmd (Data visualization)
+Mini-project title: data visualization.qmd
 
-Submission date: 2/10/2025
+Submission date: 2/18/2025
 
 Project GitHub subdirectory URL: 
 https://github.com/lisasa173/d2mr-unique-objectives-1-to-5-repo
 
 URL or instructions to access additional materials, if needed:
-This new repo contains the data visualization project aiming to meet visualization objectives. By creating this new repo I aim to meet objectives 1-5 (Rstudio & github) & some R markdown & Quarto objectives.
+This new repo contains the data visualization project aiming to meet visualization & RStudio & GitHub objectives. The viz-level-1.qmd is not the actual document I worked on. Please navigate to the following website to see the complete project: https://github.com/lisasa173/d2mr-unique-objectives-1-to-5-repo. The objectives 1 to 5 repo contains the gitignore, readme, and data visualization.qmd that aim for objectives 1-5 and beyond. The current subdirectory only has the Assessment.Rmd file that contains valid information.
 
 ## Additional information
 
@@ -101,7 +101,7 @@ Below each learning objective is a list of general expectations for meeting that
     1. No errors occur when running scripts in a new environment and/or comments sufficiently explain package installation requirements
     2. Uses more than one function to install/load/require packages
 
-        -   [ ] Objective attempt
+        -   [*] Objective attempt
         -   [ ] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
@@ -111,7 +111,7 @@ Below each learning objective is a list of general expectations for meeting that
     1. Uses all three types of operators
     2. Uses multiple operators in data transformation pipelines and/or inline R code
 
-        -   [ ] Objective attempt
+        -   [*] Objective attempt
         -   [ ] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
@@ -121,8 +121,9 @@ Below each learning objective is a list of general expectations for meeting that
     1. Defines at least one function with at least one argument
     2. Runs without error and produces expected output in at least 2 contexts
     3. Functions are well-documented with comments
+*Note: I think I met this in the "Class_output.R" script.
 
-        -   [ ] Objective attempt
+        -   [*] Objective attempt
         -   [ ] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
@@ -131,8 +132,9 @@ Below each learning objective is a list of general expectations for meeting that
 
     1. Uses conditional in multiple contexts, including dplyr pipelines
     2. Uses multiple types of conditional/loop functions (e.g., `if_else()`, `case_when()`, `for`, `while`)
+*Note: I think I met this both in the "Class_output.R" script and in the data visualization.qmd.
 
-        -   [ ] Objective attempt
+        -   [*] Objective attempt
         -   [ ] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
@@ -145,7 +147,7 @@ Below each learning objective is a list of general expectations for meeting that
     2. Writes out intermediate and/or final datasets in code chunks or sourced scripts
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -155,7 +157,7 @@ Below each learning objective is a list of general expectations for meeting that
     2. Uses at least 1 `tidyr` function in a data transformation pipeline
     3. Combines `dplyr` and `tidyr` functions in a data transformation pipeline
 
-        -   [ ] Objective attempt
+        -   [*] Objective attempt
         -   [ ] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
@@ -354,7 +356,7 @@ Below each learning objective is a list of general expectations for meeting that
     2. Uses at least 2 unique header levels
     3. Includes at least 1 list
     4. Includes at least 1 footnote
-
+*Note: I completed 4 in lines 104-105 in data visualization.qmd.
         -   [ ] Objective attempt
         -   [*] Unique objective attempt
         -   [ ] Objective met
@@ -388,7 +390,7 @@ Below each learning objective is a list of general expectations for meeting that
     4. No additional steps are needed (e.g., finding data, determining necessary packages to install and load, running unsourced scripts)
 
         -   [ ] Objective attempt
-        -   [ ] Unique objective attempt
+        -   [*] Unique objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -432,7 +434,14 @@ You are not required to demonstrate these objectives in your independent project
 If you believe you have demonstrated any of the above skills sufficiently to count toward the 20 additional objectives-based points, please indicate which objective(s) you believe you have met and provide a brief explanation of how you have met each objective.
 
 <!-- Explanation of demonstrated unassessed objectives below this line -->
-I think I've met objectives 12, 15, & 16 in this mini-assignment. For 12, I can differentiate between numeric and non-numeric data. For 15, I can recognize histogram, barplot, scatterplots with regression lines, and create graphs by the interpretations I need (e.g., compare the means of MPG by cylinder type). For 16, I know what graph to draw for the specific question (e.g., What are corresponding levels of MPG when the car has 4, 6, or 8 cylinders?).
+I think I've met objectives 4, 10, 12, 13, 15, & 16 in this mini-assignment. 
+
+For 4: please refer to lines 7 & 81.
+For 10: I created "Class_output.R" separately and sourced it rather than embedding it inside the .qmd because I think that function was not directly relevant the task of graphing a stacked plot.
+For 12: I can differentiate between numeric and non-numeric data. 
+For 13: please refer to lines 208-221 vs. lines 236-247. I differentiated a categorical variable from a continuous variable.
+For 15: I can recognize histogram, barplot, scatterplots with regression lines, and create graphs by the interpretations I need (e.g., compare the means of MPG by cylinder type). 
+For 16: I know what graph to draw for the specific question (e.g., "What are corresponding levels of MPG when the car has 4, 6, or 8 cylinders?" & "How to compare the proportion of engine?" (i.e., Graph Descriptive Data Analysis 2)).
 
 <!-- Explanation of demonstrated unassessed objectives above this line -->
 
@@ -455,10 +464,7 @@ Thoughtful reflections may earn engagement points.
 
 <!-- Reflection below this line -->
 
-
-I learnt to visualize descriptive data, to use appropriate graphs for a specific question, to make the graphs look beautiful, and to use APA style to render graphs.
-
-
+I learnt to visualize descriptive data, to use appropriate graphs for a specific question, to make the graphs look beautiful, and to use APA style to render graphs. I also tried out ggsave() and knitr::include_graphics() to see how to save the plots and how to compare the plots under one code chunk. Moreover, I tried a linear regression model in plot 7, and learnt that linear regressions can be directly plotted through ggplot() functions, in addition to being separately defined, although I suspect that for more difficult regressions I need to separately define them before plotting into the graph. Moreover, I learnt how to output a apaquarto pdf, how to use fig-cap & label: tbl or label: fig to allow apaquarto to automatically generate sequence starting from figure 1. I also learnt how to create visually beautiful tables and figures, using theme() and kable(). Moreover, I actually just learned in this project how to commit & push from the terminal.
 
 <!-- Do not edit below this line. -->
 
