@@ -30,7 +30,7 @@ Project GitHub subdirectory URL:
 https://github.com/lisasa173/d2mr-unique-objectives-1-to-5-repo
 
 URL or instructions to access additional materials, if needed:
-This new repo contains the data visualization project aiming to meet visualization & RStudio & GitHub objectives. The viz-level-1.qmd is not the actual document I worked on. Please navigate to the following website to see the complete project: https://github.com/lisasa173/d2mr-unique-objectives-1-to-5-repo. The objectives 1 to 5 repo contains the gitignore, readme, and data visualization.qmd that aim for objectives 1-5 and beyond. The current subdirectory only has the Assessment.Rmd file that contains valid information.
+This new repo contains the data visualization project aiming to meet visualization & RStudio & GitHub objectives. The viz-level-1.qmd is not the actual document I worked on in the assessment reop. Please navigate to the following website to see the complete project: https://github.com/lisasa173/d2mr-unique-objectives-1-to-5-repo. The objectives 1 to 5 repo contains the gitignore, readme, and data visualization.qmd that aim for objectives 1-5 and beyond.
 
 ## Additional information
 
