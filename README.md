@@ -9,4 +9,6 @@ The project sources a function that displayed in "Class_output.R" to be used in 
 
 The project also has three folders: 2 "data-visualization_files" folders and "_extensions" folder that respectively include the graphs I created and apaquarto extensions.
 
-"scatterplot.png" is in the same directory because the author wanted to test the function ggsave(). The .qmd is exported both as html and pdf.
+The "my plots" folder is in the same directory because the author wanted to test the function ggsave(). The .qmd is exported both as html and pdf.
+
+The local_only folder contains the ggplot cheatsheet in gitignore, that doesn't belong online.
