@@ -373,7 +373,8 @@ plot4 <- mtcars.viz %>%
   geom_point() +
   theme_minimal () +
   labs (x = "Cylinder",
-        y = "Miles per Gallon")
+        y = "Miles per Gallon") + 
+  scale_fill_viridis(option="plasma", discrete=TRUE)
 plot4
 ```
 
@@ -466,6 +467,7 @@ mtcars.viz %>% mutate (auto_or_man = ifelse (transmission == "1", "Man.", "Auto"
 
 #Attempt 1: to output five classes (didn't work)
 Class_output (2.1)
+Class_output (4.2)
 
 #Attempt 2 using case_when worked!
 #I used forcats here!
@@ -492,6 +494,38 @@ plot6 <- mtcars.viz %>% mutate (auto_or_man = fct_recode(transmission, "Man." = 
 plot6
 ```
 
+# Review
+
+1. Which plots were you able to fully recreate successfully? Did you encounter any challenges along the way?
+
+<!-- answer below -->
+I created all of them.
+2. Which plots were you only partially able to recreate? What challenges did you encounter that limited your ability to fully recreate the plot? What additional information or skills would you need to complete the plot?
+
+<!-- answer below -->
+I need to know what color scheme was used in the original plot 4.
+
+# Optional plotting
+
+If you have time and would like to practice more, try creating one or more plots of own design using the `mtcars.viz` dataset or adding to one of the plots above. You can use any combination of geoms, aesthetics, and layers you like. Whether you start from scratch or build on an existing plot, create your plots in code chunks below. (Leave the chunks above as your work recreating the plots as-is.)
+
+For each optional plot you create or extend, include a brief description of the plot below the chunk and any additional information you think is relevant.
+
+```{r Does weight predict mpg? Does having v-shaped or straight engine change this prediction?}
+#| label: fig-optional-plot-1
+#| fig-cap: The relationship between mpg and weight by engine
+#| echo: TRUE
+
+plot7 <- mtcars.viz %>% ggplot (aes (x = miles_per_g, y = weight, color = engine)) +
+  geom_point (alpha = 0.4) +
+  geom_smooth (method = "lm") +
+  theme_minimal () +
+  labs (caption = "I love Doraemon.",
+        x = "Miles per Gallon",
+        y = "Car weight",
+        title = "The relationship between mpg and weight by engine")
+plot7
+```
 ```{r Compare results example}
 #| label: Compare resultsusing include_graphics()
 #| echo: TRUE
@@ -510,32 +544,6 @@ ggsave("Miles per Gallon by cylinder.png", plot4, dpi = 300, width = 7, height =
 ggsave("Scatterplot of miles per Gallon by cylinder.png", plot3, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
 ggsave("The number of cars by cylinder.png", plot2, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
 ggsave("Counting by weight.png", plot1, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
-```
-
-
-# Review
-
-1. Which plots were you able to fully recreate successfully? Did you encounter any challenges along the way?
-
-<!-- answer below -->
-I created all of them.
-2. Which plots were you only partially able to recreate? What challenges did you encounter that limited your ability to fully recreate the plot? What additional information or skills would you need to complete the plot?
-
-<!-- answer below -->
-I need to know what color scheme was used in the original plot 4.
-
-# Optional plotting
-
-If you have time and would like to practice more, try creating one or more plots of own design using the `mtcars.viz` dataset or adding to one of the plots above. You can use any combination of geoms, aesthetics, and layers you like. Whether you start from scratch or build on an existing plot, create your plots in code chunks below. (Leave the chunks above as your work recreating the plots as-is.)
-
-For each optional plot you create or extend, include a brief description of the plot below the chunk and any additional information you think is relevant.
-
-```{r eval = FALSE, include = FALSE}
-
-#| label: optional-plot-1
-
-## Your code here
-
 ```
 
 # Submission & Assessment
