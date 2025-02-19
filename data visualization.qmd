@@ -1,6 +1,10 @@
 ---
 title: "Level 1 Data Visualization: Plot the mtcars Dataset"
-format: html
+format:
+  html: default
+  pdf:
+    pdf-engine: xelatex
+    #I have another format below. Having two formats led to an error message "ERROR: YAMLException: duplicated mapping key (data visualization.qmd, 45:1)". So I am deleting the format here, and preserving the one below.
 date: "`r Sys.Date()`"
 shorttitle: "Data Visualization Mini-project"
 author: 
@@ -22,8 +26,36 @@ author:
 author-note:
   disclosures: NA
   gratitude: The author is grateful to Dr. Dowling and Mian Li for teaching me how to use R and rendering a manuscript from R.
-abstract: "This document presents visualization of several graphs to demonstrate my ability using ggplot."
+abstract: "This document analyzes the mcar dataset, and presents the relationship between several variables to demonstrate my ability using ggplot."
 keywords: [ggplot2, data visualization]
+floatsintext: true
+numbered-lines: false
+#bibliography: bibliography.bib #Currently I don't have bibliography, but will add it in future projects.
+suppress-title-page: false
+link-citations: true
+lang: en
+language:
+  citation-last-author-separator: "and"
+  citation-masked-author: "Masked Citation"
+  citation-masked-date: "n.d."
+  citation-masked-title: "Masked Title"
+  email: "lisazhu@uchicago.edu"
+  title-block-author-note: "Good news: cute rabbits and squirrels may appear somewhere near you this week!"
+  title-block-correspondence-note: "Correspondence concerning this article should be addressed to Lisa."
+  title-impact-statement: "This project may help me pass this class, so it is doing amazing things."
+#format:
+  #apaquarto-docx: default
+  #apaquarto-html: default
+  #apaquarto-typst: 
+    #keep-typ: true
+    #list-of-figures: true
+    #list-of-tables: true
+    #toc: true
+  #apaquarto-pdf:
+    #documentmode: man
+    #keep-tex: true
+    #list-of-figures: true
+    #list-of-tables: true
 ---
 
 # Objective
@@ -44,24 +76,34 @@ You may additionally or alternatively complete the [Level 2 Data Visualization a
 
 ## Setup
 I imported five packages: **tidyverse**, **knitr**, **janitor**, **quarto**, and **viridis**. I tried installing _apaquarto_, but didn't succeed using option 2. However, I tried moving the extension folder from other directories to this one, and it seems to be working.
-```{r}
+
+```{r Mirror Error Fix setup, include = FALSE}
+#There was an error message "Error in `contrib.url()`: ! trying to use CRAN without setting a mirror", which prevented me from rendering, so I searched on Stack Overflow, and found that I need to add the following code.
+options(repos=c(CRAN="https://repo.miserver.it.umich.edu/cran/"))
+```
+
+```{r Import Packages, results='hide'}
 
 #| label: libraries-seed
 #| echo: TRUE
 
+require ("tinytex") # I installed TinyTex in Terminal by running "quarto install tinytex"
 install.packages("janitor")
 library(tidyverse)
 library(quarto)
 library(knitr)
 library(janitor)
 library(viridis)
+library(tinytex)
+library(flextable)
+library(kableExtra)
 source ("Class_output.R")
 set.seed(123)
 ```
 
 ### Inspect the `mtcars` dataset:
 Check the dataset: `?mtcars` ^[The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973--74 models).].
-```{r}
+```{r Inspect Dataset, results='hide'}
 
 #| label: inspect-mtcars
 #| echo: TRUE
@@ -117,7 +159,7 @@ Based on your inspection of the `mtcars` dataset and your answers to the above q
 
 You will need to change the data types for some variables. You may also want to rename variables and factor levels for clarity. Renaming variables and levels now can make your visualization simpler later, but you can do it directly in the your plotting functions, too.
 
-```{r}
+```{r Prepare dataset for visualization}
 
 #| label: prepare-mtcars
 #| echo: TRUE
@@ -154,15 +196,34 @@ mtcars.viz <- mtcars.viz %>% rename (miles_per_g = mpg,
   mutate (engine = as.factor (engine),
           transmission = as.factor(transmission))
 ```
+```{r Applying readr, results='hide'}
+#| label: apply readr
+#Export the new dataset mtcars.viz to the directory, and read in the data:
+write_csv (mtcars.viz, "mtcars.viz.csv")
+read_csv("mtcars.viz.csv")
+```
+
 ## Some Descriptive Data Analysis
 ### Miles per gallon (Objective 17; numeric variable)
-```{r}
-#| label: mean, median, & sd of miles per gallon for each cylinder type
+```{r Table for Descriptive Data Analysis 1}
+#| label: tbl-mean-median-sd-of-mpg-for-each-cylinder-type
 #| echo: TRUE
+#| tbl-cap: mean, median, & sd of miles per gallon for each cylinder type
+
 library(knitr)
 stats <- mtcars.viz %>% group_by (cylinders) %>% 
   summarise(mean_mpg = mean (miles_per_g),
                          sd_mpg = sd (miles_per_g))
+
+stats1 <- stats %>% flextable() %>% 
+  theme_apa() 
+stats1
+```
+
+```{r Graph Descriptive Analysis 1}
+#| label: fig-mean-median-sd-of-mpg-for-each-cylinder-type
+#| echo: TRUE
+#| fig-cap: mean, median, & sd of miles per gallon for each cylinder type
 
 stats %>% ggplot (aes (x = as.factor(cylinders), y = mean_mpg, fill = as.factor(cylinders))) +
   geom_col() +
@@ -170,13 +231,25 @@ stats %>% ggplot (aes (x = as.factor(cylinders), y = mean_mpg, fill = as.factor(
   theme_minimal() +
   scale_fill_viridis(option="magma", discrete=TRUE)
 ```
-### Engine (Obejctive 17; factor variable)
-```{r}
-#| label: frequency and proportion of engine being v-shaped (=0) vs. straight (=1)
-#| echo: TRUE
 
-mtcars.viz %>% tabyl (engine) %>%
-  kable(digits = 2, caption = "Summary Statistics for Engine")
+### Engine (Obejctive 17; factor variable)
+```{r Descriptive Data Analysis 2}
+#| label: tbl-frequency-and-proportion-of-engine-being-v-shape-or-straight
+#| echo: TRUE
+#| fig-cap: frequency and proportion of engine by type
+
+stats2 <- mtcars.viz %>% tabyl (engine) %>%
+  kable(digits = 2, 
+        caption = "Summary Statistics for Engine",
+        col.names = c("Engine", "Count", "Percentage"),
+        align = c("ccc"))
+stats2
+```
+
+```{r Graph Descriptive Data Analysis 2}
+#| label: fig-frequency-and-proportion-of-engine-being-v-shape-or-straight
+#| echo: TRUE
+#| fig-cap: mean, median, & sd of miles per gallon for each cylinder type
 
 mtcars.viz %>% ggplot (aes (x = engine)) +
   geom_bar(fill = "skyblue") +
@@ -194,23 +267,20 @@ Recreate this histogram of car weight:
 
 ![Histogram of car weight](plots/plot1.png)
 
-```{r}
-
-#| label: plot1-histogram
+```{r Histogram}
+#| label: fig-plot1-histogram
 #| echo: TRUE
-#| fig-cap: "Counting by weight"
+#| fig-cap: Counting by weight
 #| apa-note: "The number of cars by weight."
 #| fig-width: 5
 #| fig-height: 5
 
-mtcars.viz %>%
+plot1 <- mtcars.viz %>%
   ggplot (aes (x = weight)) + 
   geom_histogram (binwidth = 0.5, fill="skyblue") +
   theme_minimal() +
-  labs (x = "Weight", y = "Number of cars")
-
-#compare with the original plot
-knitr::include_graphics ("plots/plot1.png")
+  labs (x = "Weight", y = "Number of cars") 
+plot1
 ```
 
 ### Bar plot
@@ -219,17 +289,16 @@ Recreate this bar plot of the number of cylinders:
 
 ![Bar plot of cylinder count](plots/plot2.png)
 
-```{r}
-
-#| label: plot2-barplot
+```{r Barplot}
+#| label: fig-plot2-barplot
 #| echo: TRUE
-#| fig-cap: "The number of cars by cylinder"
+#| fig-cap: The number of cars by cylinder
 #| apa-note: "This is graph showing the number of cars by cylinder."
 #| fig-width: 5
 #| fig-height: 5
 
 #I used forcats here!
-mtcars.viz %>% 
+plot2 <- mtcars.viz %>% 
   mutate (cylinders = as.factor (cylinders)) %>%
   mutate (cylinders = fct_relevel (cylinders, c("8", "4", "6"))) %>%
   ggplot (aes (x = cylinders)) +
@@ -237,11 +306,7 @@ mtcars.viz %>%
   ylim (c(0,15)) +
   theme_minimal() +
   labs (x = "Number of cylinders", y = "Number of cars")
-
-ggsave("scatterplot.png", dpi = 300, width = 7, height = 5)
-
-#compare with the original plot
-knitr::include_graphics ("plots/plot2.png")
+plot2
 ```
 
 ### Scatter plot
@@ -250,22 +315,20 @@ Recreate this scatter plot of car weight vs. miles per gallon:
 
 ![Scatter plot of car weight vs. miles per gallon](plots/plot3.png)
 
-```{r}
+```{r Scatterplot}
 
-#| label: plot3-scatterplot
+#| label: fig-plot3-scatterplot
 #| echo: TRUE
-#| fig-cap: "Miles per gallon by car weight"
+#| fig-cap: Miles per gallon by car weight
 #| fig-width: 5
 #| fig-height: 5
 
-mtcars.viz %>% 
+plot3 <- mtcars.viz %>% 
   ggplot (aes (x = weight, y = miles_per_g)) +
   geom_point(color = "skyblue") +
   labs (x = "Car weight", y = "Miles per Gallon") +
   theme_minimal()
-
-#compare with the original plot
-knitr::include_graphics ("plots/plot3.png")
+plot3
 ```
 
 ## Intermediate Plots
@@ -293,16 +356,16 @@ What additional information is required to produce this plot? What layers or aes
 <!-- answer below -->
 the mean for each cylinder type & the standard deviation.
 
-```{r}
+```{r Boxplot}
 
-#| label: plot4-boxplot
+#| label: fig-plot4-boxplot
 #| echo: TRUE
-#| fig-cap: "Miles per Gallon by cylinder"
+#| fig-cap: Miles per Gallon by cylinder
 #| apa-note: "This graph shows miles per gallon when the car has 4, 6, or 8 cylinders."
 #| fig-width: 5
 #| fig-height: 5
 
-mtcars.viz %>% 
+plot4 <- mtcars.viz %>% 
   mutate (cylinders = as.factor (cylinders)) %>%
   mutate (cylinders = fct_relevel (cylinders, c("8", "4", "6"))) %>% 
   ggplot (aes (x = cylinders, y = miles_per_g, fill = cylinders)) +
@@ -311,9 +374,7 @@ mtcars.viz %>%
   theme_minimal () +
   labs (x = "Cylinder",
         y = "Miles per Gallon")
-
-#compare with the original plot
-knitr::include_graphics ("plots/plot4.png")
+plot4
 ```
 
 
@@ -339,18 +400,18 @@ What additional information is required to produce this plot? What layers or aes
 standard deviation (grey area), slope & intercept
 
 
-```{r}
+```{r Faceted Scatterplot}
 
-#| label: plot5-faceted-scatterplot
+#| label: fig-plot5-faceted-scatterplot
 #| echo: TRUE
-#| fig-cap: "Weight vs. displacement by MPG category"
+#| fig-cap: Weight vs. displacement by MPG category
 #| apa-note: "Linear regression was used in this example."
 #| fig-width: 5
 #| fig-height: 5
 
 library (grid)
 
-mtcars.viz %>%
+plot5 <- mtcars.viz %>%
   mutate (low_high_mpg = ifelse(miles_per_g > mean(miles_per_g), "high mpg", "low mpg")) %>%
   ggplot (aes (x = weight, y = displacement)) +
   geom_point(color = "purple", shape = 2) +
@@ -359,9 +420,8 @@ mtcars.viz %>%
   theme_minimal() +
   xlim (c(0, 6)) +
   labs (caption = "I definitely know thing about cars.") 
-  
-#compare with the original plot
-knitr::include_graphics ("plots/plot5.png")
+
+plot5
 
 #I don't know how to add the title on the top left & bottom right corners. The following lines don't work:
 #+
@@ -392,10 +452,10 @@ What additional information is required to produce this plot? What layers or aes
 
 <!-- answer below -->
 
-```{r}
+```{r Stacked barplot}
 
-#| label: plot6-stacked-barplot
-#| fig-cap: "Figure 6: Stacked barplot of frequency by weight class categorized by automatic or manual transmission type"
+#| label: fig-plot6-stacked-barplot
+#| fig-cap: Stacked barplot of frequency by weight class categorized by automatic or manual transmission type
 #| echo: TRUE
 #| fig-alt: "Magic beans can fly."
 #| outwidth: 40%
@@ -409,7 +469,7 @@ Class_output (2.1)
 
 #Attempt 2 using case_when worked!
 #I used forcats here!
-mtcars.viz %>% mutate (auto_or_man = fct_recode(transmission, "Man." = "1", "Auto" = "0")) %>%
+plot6 <- mtcars.viz %>% mutate (auto_or_man = fct_recode(transmission, "Man." = "1", "Auto" = "0")) %>%
   mutate (weight = case_when (
   weight < 2 ~ "Class 1 (<2)",
   weight >=2 & weight <= 3 ~ "Class 2 (2.1-3)",
@@ -427,12 +487,31 @@ mtcars.viz %>% mutate (auto_or_man = fct_recode(transmission, "Man." = "1", "Aut
         x = "Weight class (sorted)",
         title = "Distribution of transmission types by weight class") +
   theme(axis.title.x = element_blank (),
-        axis.text = element_text(colour = "steelblue", face = "italic",
-family = "Times New Roman"))
+        axis.text = element_text(colour = "steelblue", face = "italic"))
 
-#compare with the original plot
-knitr::include_graphics ("plots/plot6.png")
+plot6
 ```
+
+```{r Compare results example}
+#| label: Compare resultsusing include_graphics()
+#| echo: TRUE
+
+plot6
+knitr::include_graphics ("plots/plot6.png") #Compare with the original ones in the folder "plots"
+```
+
+```{r Using ggsave()}
+#| label: ggsave()
+#| echo: TRUE
+
+ggsave("Distribution of transmission types by weight class.png", plot6, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
+ggsave("Stacked bar plot of transmission type by weight class.png", plot5, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
+ggsave("Miles per Gallon by cylinder.png", plot4, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
+ggsave("Scatterplot of miles per Gallon by cylinder.png", plot3, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
+ggsave("The number of cars by cylinder.png", plot2, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
+ggsave("Counting by weight.png", plot1, dpi = 300, width = 7, height = 5, path = "/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots")
+```
+
 
 # Review
 

@@ -48,5 +48,5 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-#newly added
+#newly added folder that contains the ggplot cheatsheet, which doesn't belong online
 local_only/
