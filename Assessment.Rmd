@@ -436,10 +436,10 @@ If you believe you have demonstrated any of the above skills sufficiently to cou
 <!-- Explanation of demonstrated unassessed objectives below this line -->
 I think I've met objectives 4, 10, 12, 13, 15, & 16 in this mini-assignment. 
 
-For 4: please refer to lines 7 & 81.
+For 4: please refer to line 76.
 For 10: I created "Class_output.R" separately and sourced it rather than embedding it inside the .qmd because I think that function was not directly relevant the task of graphing a stacked plot.
 For 12: I can differentiate between numeric and non-numeric data. 
-For 13: please refer to lines 208-221 vs. lines 236-247. I differentiated a categorical variable from a continuous variable.
+For 13: please refer to lines 204-216 vs. lines 233-247. I differentiated a categorical variable from a continuous variable.
 For 15: I can recognize histogram, barplot, scatterplots with regression lines, and create graphs by the interpretations I need (e.g., compare the means of MPG by cylinder type). 
 For 16: I know what graph to draw for the specific question (e.g., "What are corresponding levels of MPG when the car has 4, 6, or 8 cylinders?" & "How to compare the proportion of engine?" (i.e., Graph Descriptive Data Analysis 2)).
 
