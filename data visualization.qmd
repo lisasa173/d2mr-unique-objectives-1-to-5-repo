@@ -1,9 +1,5 @@
 ---
 title: "Level 1 Data Visualization: Plot the mtcars Dataset"
-format:
-  html: default
-  pdf:
-    pdf-engine: xelatex
     #I have another format below. Having two formats led to an error message "ERROR: YAMLException: duplicated mapping key (data visualization.qmd, 45:1)". So I am deleting the format here, and preserving the one below.
 date: "`r Sys.Date()`"
 shorttitle: "Data Visualization Mini-project"
@@ -24,6 +20,8 @@ author:
         country: USA
         postal-code: 60615
 author-note:
+  title-block-author-note: "Good news: cute rabbits and squirrels may appear somewhere near you this week!"
+  title-impact-statement: "This project may help me pass this class, so it is doing amazing things."
   disclosures: NA
   gratitude: The author is grateful to Dr. Dowling and Mian Li for teaching me how to use R and rendering a manuscript from R.
 abstract: "This document analyzes the mcar dataset, and presents the relationship between several variables to demonstrate my ability using ggplot."
@@ -40,22 +38,20 @@ language:
   citation-masked-date: "n.d."
   citation-masked-title: "Masked Title"
   email: "lisazhu@uchicago.edu"
-  title-block-author-note: "Good news: cute rabbits and squirrels may appear somewhere near you this week!"
   title-block-correspondence-note: "Correspondence concerning this article should be addressed to Lisa."
-  title-impact-statement: "This project may help me pass this class, so it is doing amazing things."
-#format:
-  #apaquarto-docx: default
-  #apaquarto-html: default
-  #apaquarto-typst: 
-    #keep-typ: true
+format:
+  apaquarto-docx: default
+  apaquarto-html: default
+  apaquarto-typst: 
+    keep-typ: true
     #list-of-figures: true
     #list-of-tables: true
     #toc: true
-  #apaquarto-pdf:
-    #documentmode: man
-    #keep-tex: true
-    #list-of-figures: true
-    #list-of-tables: true
+  apaquarto-pdf:
+    documentmode: man
+    keep-tex: true
+    list-of-figures: true
+    list-of-tables: true
 ---
 
 # Objective
@@ -79,19 +75,23 @@ I imported five packages: **tidyverse**, **knitr**, **janitor**, **quarto**, and
 
 ```{r Mirror Error Fix setup, include = FALSE}
 #There was an error message "Error in `contrib.url()`: ! trying to use CRAN without setting a mirror", which prevented me from rendering, so I searched on Stack Overflow, and found that I need to add the following code.
+
+#| label: mirror fix
+#| include: false
+
 options(repos=c(CRAN="https://repo.miserver.it.umich.edu/cran/"))
 ```
 
 ```{r Import Packages, results='hide'}
 
 #| label: libraries-seed
-#| echo: TRUE
+#| include: false
 
 require ("tinytex") # I installed TinyTex in Terminal by running "quarto install tinytex"
 install.packages("janitor")
 library(tidyverse)
 library(quarto)
-library(knitr)
+library(knitr) #To make tables look more beautiful
 library(janitor)
 library(viridis)
 library(tinytex)
@@ -106,7 +106,7 @@ Check the dataset: `?mtcars` ^[The data was extracted from the 1974 Motor Trend 
 ```{r Inspect Dataset, results='hide'}
 
 #| label: inspect-mtcars
-#| echo: TRUE
+#| include: false
 
 ## Look at the structure and first few rows of the mtcars dataset
 str(mtcars)
@@ -162,7 +162,7 @@ You will need to change the data types for some variables. You may also want to 
 ```{r Prepare dataset for visualization}
 
 #| label: prepare-mtcars
-#| echo: TRUE
+#| include: false
 
 ## Prepare the mtcars dataset for visualization
 
@@ -196,8 +196,10 @@ mtcars.viz <- mtcars.viz %>% rename (miles_per_g = mpg,
   mutate (engine = as.factor (engine),
           transmission = as.factor(transmission))
 ```
-```{r Applying readr, results='hide'}
+```{r Applying readr}
 #| label: apply readr
+#| include: false
+
 #Export the new dataset mtcars.viz to the directory, and read in the data:
 write_csv (mtcars.viz, "mtcars.viz.csv")
 read_csv("mtcars.viz.csv")
@@ -207,53 +209,64 @@ read_csv("mtcars.viz.csv")
 ### Miles per gallon (Objective 17; numeric variable)
 ```{r Table for Descriptive Data Analysis 1}
 #| label: tbl-mean-median-sd-of-mpg-for-each-cylinder-type
-#| echo: TRUE
 #| tbl-cap: mean, median, & sd of miles per gallon for each cylinder type
+#| echo: TRUE
 
-library(knitr)
 stats <- mtcars.viz %>% group_by (cylinders) %>% 
   summarise(mean_mpg = mean (miles_per_g),
                          sd_mpg = sd (miles_per_g))
 
-stats1 <- stats %>% flextable() %>% 
+stats1 <- stats %>%
+  flextable() %>% 
   theme_apa() 
 stats1
 ```
 
 ```{r Graph Descriptive Analysis 1}
 #| label: fig-mean-median-sd-of-mpg-for-each-cylinder-type
-#| echo: TRUE
 #| fig-cap: mean, median, & sd of miles per gallon for each cylinder type
+#| echo: TRUE
 
-stats %>% ggplot (aes (x = as.factor(cylinders), y = mean_mpg, fill = as.factor(cylinders))) +
+graphstats1 <- stats %>% ggplot (aes (x = as.factor(cylinders), y = mean_mpg, fill = as.factor(cylinders))) +
   geom_col() +
   geom_errorbar(aes (ymin = (mean_mpg - sd_mpg), ymax = (mean_mpg + sd_mpg)), width = 0.3, color = "skyblue") +
   theme_minimal() +
   scale_fill_viridis(option="magma", discrete=TRUE)
+
+graphstats1
 ```
 
 ### Engine (Obejctive 17; factor variable)
 ```{r Descriptive Data Analysis 2}
 #| label: tbl-frequency-and-proportion-of-engine-being-v-shape-or-straight
-#| echo: TRUE
 #| fig-cap: frequency and proportion of engine by type
+#| echo: TRUE
 
 stats2 <- mtcars.viz %>% tabyl (engine) %>%
-  kable(digits = 2, 
+  kable(digits = 2, #round digits 
         caption = "Summary Statistics for Engine",
         col.names = c("Engine", "Count", "Percentage"),
-        align = c("ccc"))
+        align = c("c")) %>%
+  column_spec(3, color = "violet",
+              background = spec_color(destats2$percent [1:2]))
 stats2
 ```
 
 ```{r Graph Descriptive Data Analysis 2}
 #| label: fig-frequency-and-proportion-of-engine-being-v-shape-or-straight
-#| echo: TRUE
 #| fig-cap: mean, median, & sd of miles per gallon for each cylinder type
+#| echo: TRUE
 
-mtcars.viz %>% ggplot (aes (x = engine)) +
-  geom_bar(fill = "skyblue") +
-  theme_minimal()
+graphstats2 <- mtcars.viz %>% ggplot (aes (x = engine)) +
+  geom_bar(fill = "orange") +
+  theme_minimal() +
+  theme (axis.text.y = element_text (angle = 45,
+                                     hjust = 1),
+         plot.background = element_rect(fill = "aquamarine"),
+         panel.grid.major = element_line (
+           linetype = "dashed", color = "#FF8C00"
+         ))
+graphstats2
 ```
 
 
