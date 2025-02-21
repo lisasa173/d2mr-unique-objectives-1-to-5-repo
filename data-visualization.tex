@@ -72,46 +72,6 @@
 
 
 
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{241,243,245}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
-\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -191,12 +151,13 @@ ggplot.}
 
 \authornote{ 
 
-\par{       Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows: Lisa
+\par{     The author is grateful to Dr.~Dowling and Mian Li for teaching
+me how to use R and rendering a manuscript from
+R.  Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows: Lisa
 Zhu:   writing, designs}
-\par{Correspondence concerning this article should be addressed to
-Lisa. Lisa Zhu, MA Program in the Social Sciences, University of
-Chicago, 1155 E 60th
-St., Chicago, IL 60615, USA, lisazhu@uchicago.edu: lisazhu@uchicago.edu}
+\par{Correspondence concerning this article should be addressed to Lisa
+Zhu, MA Program in the Social Sciences, University of Chicago, 1155 E
+60th St., Chicago, IL 60615, USA, Email: lisazhu@uchicago.edu}
 }
 
 \makeatletter
@@ -394,55 +355,6 @@ installing \emph{apaquarto}, but didn't succeed using option 2. However,
 I tried moving the extension folder from other directories to this one,
 and it seems to be working.
 
-\begin{verbatim}
-Loading required package: tinytex
-\end{verbatim}
-
-\begin{verbatim}
--- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-v dplyr     1.1.4     v readr     2.1.5
-v forcats   1.0.0     v stringr   1.5.1
-v ggplot2   3.5.1     v tibble    3.2.1
-v lubridate 1.9.4     v tidyr     1.3.1
-v purrr     1.0.2     
--- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()
-i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-Attaching package: 'janitor'
-
-
-The following objects are masked from 'package:stats':
-
-    chisq.test, fisher.test
-
-
-Loading required package: viridisLite
-
-
-Attaching package: 'flextable'
-
-
-The following object is masked from 'package:purrr':
-
-    compose
-
-
-
-Attaching package: 'kableExtra'
-
-
-The following objects are masked from 'package:flextable':
-
-    as_image, footnote
-
-
-The following object is masked from 'package:dplyr':
-
-    group_rows
-\end{verbatim}
-
 \subsubsection{\texorpdfstring{Inspect the \texttt{mtcars}
 dataset:}{Inspect the mtcars dataset:}}\label{inspect-the-mtcars-dataset}
 
@@ -561,53 +473,14 @@ want to rename variables and factor levels for clarity. Renaming
 variables and levels now can make your visualization simpler later, but
 you can do it directly in the your plotting functions, too.
 
-\begin{verbatim}
-# A tibble: 32 x 11
-   miles_per_g cylinders displacement horsepower rear_axle_ratio weight
-         <dbl>     <dbl>        <dbl>      <dbl>           <dbl>  <dbl>
- 1        21           6         160         110            3.9    2.62
- 2        21           6         160         110            3.9    2.88
- 3        22.8         4         108          93            3.85   2.32
- 4        21.4         6         258         110            3.08   3.22
- 5        18.7         8         360         175            3.15   3.44
- 6        18.1         6         225         105            2.76   3.46
- 7        14.3         8         360         245            3.21   3.57
- 8        24.4         4         147.         62            3.69   3.19
- 9        22.8         4         141.         95            3.92   3.15
-10        19.2         6         168.        123            3.92   3.44
-# i 22 more rows
-# i 5 more variables: mile_time <dbl>, engine <dbl>, transmission <dbl>,
-#   gear <dbl>, carb <dbl>
-\end{verbatim}
-
-\begin{verbatim}
-Rows: 32 Columns: 11
--- Column specification --------------------------------------------------------
-Delimiter: ","
-dbl (11): miles_per_g, cylinders, displacement, horsepower, rear_axle_ratio,...
-
-i Use `spec()` to retrieve the full column specification for this data.
-i Specify the column types or set `show_col_types = FALSE` to quiet this message.
-\end{verbatim}
-
 \subsection{Some Descriptive Data
 Analysis}\label{some-descriptive-data-analysis}
 
 \subsubsection{Miles per gallon (Objective 17; numeric
 variable)}\label{miles-per-gallon-objective-17-numeric-variable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(knitr)}
-\NormalTok{stats }\OtherTok{\textless{}{-}}\NormalTok{ mtcars.viz }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{ (cylinders) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_mpg =} \FunctionTok{mean}\NormalTok{ (miles\_per\_g),}
-                         \AttributeTok{sd\_mpg =} \FunctionTok{sd}\NormalTok{ (miles\_per\_g))}
-
-\NormalTok{stats1 }\OtherTok{\textless{}{-}}\NormalTok{ stats }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{flextable}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{theme\_apa}\NormalTok{() }
-\NormalTok{stats1}
-\end{Highlighting}
-\end{Shaded}
+Table~\ref{tbl-mean-median-sd-of-mpg-for-each-cylinder-type} shows the
+mean, median, \& sd of miles per gallon for each cylinder type.
 
 \begin{table}
 
@@ -677,17 +550,10 @@ type}{\label{tbl-mean-median-sd-of-mpg-for-each-cylinder-type}}}
 
 \end{table}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{stats }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{ (}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =} \FunctionTok{as.factor}\NormalTok{(cylinders), }\AttributeTok{y =}\NormalTok{ mean\_mpg, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(cylinders))) }\SpecialCharTok{+}
-  \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_errorbar}\NormalTok{(}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{ymin =}\NormalTok{ (mean\_mpg }\SpecialCharTok{{-}}\NormalTok{ sd\_mpg), }\AttributeTok{ymax =}\NormalTok{ (mean\_mpg }\SpecialCharTok{+}\NormalTok{ sd\_mpg)), }\AttributeTok{width =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{color =} \StringTok{"skyblue"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_viridis}\NormalTok{(}\AttributeTok{option=}\StringTok{"magma"}\NormalTok{, }\AttributeTok{discrete=}\ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Figure~\ref{fig-mean-median-sd-of-mpg-for-each-cylinder-type} visualizes
+the table above.
 
-\begin{figure}[H]
+\begin{figure}
 
 \caption{\label{fig-mean-median-sd-of-mpg-for-each-cylinder-type}mean,
 median, \& sd of miles per gallon for each cylinder type}
@@ -703,16 +569,8 @@ median, \& sd of miles per gallon for each cylinder type}
 \subsubsection{Engine (Obejctive 17; factor
 variable)}\label{engine-obejctive-17-factor-variable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{stats2 }\OtherTok{\textless{}{-}}\NormalTok{ mtcars.viz }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{tabyl}\NormalTok{ (engine) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable}\NormalTok{(}\AttributeTok{digits =} \DecValTok{2}\NormalTok{, }
-        \AttributeTok{caption =} \StringTok{"Summary Statistics for Engine"}\NormalTok{,}
-        \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Engine"}\NormalTok{, }\StringTok{"Count"}\NormalTok{, }\StringTok{"Percentage"}\NormalTok{),}
-        \AttributeTok{align =} \FunctionTok{c}\NormalTok{(}\StringTok{"ccc"}\NormalTok{))}
-\NormalTok{stats2}
-\end{Highlighting}
-\end{Shaded}
+Table~\ref{tbl-frequency-and-proportion-of-engine-being-v-shape-or-straight}
+shows the frequency and proportion of engine by type.
 
 \begin{table}
 
@@ -720,30 +578,24 @@ variable)}\label{engine-obejctive-17-factor-variable}
 Engine}{\label{tbl-frequency-and-proportion-of-engine-being-v-shape-or-straight}}}
 \vspace{-20pt}}
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule\noalign{}
-Engine & Count & Percentage \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-0 & 18 & 0.56 \\
-1 & 14 & 0.44 \\
-\end{longtable}
-
-frequency and proportion of engine by type
+\begin{longtable*}[t]{cc>{}c}
+\\
+\toprule
+Engine & Count & Percentage\\
+\midrule
+0 & 18 & \cellcolor[HTML]{FDE725}{\textcolor{violet}{0.56}}\\
+1 & 14 & \cellcolor[HTML]{440154}{\textcolor{violet}{0.44}}\\
+\bottomrule
+\end{longtable*}
 
 \end{table}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mtcars.viz }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{ (}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ engine)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+frequency and proportion of engine by type
 
-\begin{figure}[H]
+Figure~\ref{fig-frequency-and-proportion-of-engine-being-v-shape-or-straight}
+visualizes the above table.
+
+\begin{figure}
 
 \caption{\label{fig-frequency-and-proportion-of-engine-being-v-shape-or-straight}mean,
 median, \& sd of miles per gallon for each cylinder type}
@@ -767,28 +619,10 @@ piping into the \texttt{ggplot()} function.
 
 Recreate this histogram of car weight:
 
-\begin{figure}[H]
+\includegraphics{plots/plot1.png} Figure~\ref{fig-plot1-histogram} shows
+my attempt to graph out the histogram graph.
 
-\caption{Histogram of car weight}
-
-{\centering \includegraphics{plots/plot1.png}
-
-}
-
-\end{figure}%
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{plot1 }\OtherTok{\textless{}{-}}\NormalTok{ mtcars.viz }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{ (}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ weight)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_histogram}\NormalTok{ (}\AttributeTok{binwidth =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{fill=}\StringTok{"skyblue"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{ (}\AttributeTok{x =} \StringTok{"Weight"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of cars"}\NormalTok{) }
-\NormalTok{plot1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}[H]
+\begin{figure}[!htbp]
 
 {\caption{{Counting by weight}{\label{fig-plot1-histogram}}}}
 
@@ -802,32 +636,10 @@ Recreate this histogram of car weight:
 
 Recreate this bar plot of the number of cylinders:
 
-\begin{figure}[H]
+\includegraphics{plots/plot2.png} Figure~\ref{fig-plot2-barplot} shows
+my attempt to graph out the barplot.
 
-\caption{Bar plot of cylinder count}
-
-{\centering \includegraphics{plots/plot2.png}
-
-}
-
-\end{figure}%
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#I used forcats here!}
-\NormalTok{plot2 }\OtherTok{\textless{}{-}}\NormalTok{ mtcars.viz }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{ (}\AttributeTok{cylinders =} \FunctionTok{as.factor}\NormalTok{ (cylinders)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{ (}\AttributeTok{cylinders =} \FunctionTok{fct\_relevel}\NormalTok{ (cylinders, }\FunctionTok{c}\NormalTok{(}\StringTok{"8"}\NormalTok{, }\StringTok{"4"}\NormalTok{, }\StringTok{"6"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{ (}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ cylinders)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{ylim}\NormalTok{ (}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{15}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{ (}\AttributeTok{x =} \StringTok{"Number of cylinders"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of cars"}\NormalTok{)}
-\NormalTok{plot2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}[H]
+\begin{figure}[!htbp]
 
 {\caption{{The number of cars by cylinder}{\label{fig-plot2-barplot}}}}
 
@@ -842,17 +654,20 @@ cylinder.}
 
 Recreate this scatter plot of car weight vs.~miles per gallon:
 
-\begin{figure}[H]
+\includegraphics{plots/plot3.png} Figure~\ref{fig-plot3-scatterplot}
+shows my attempt to graph out the scatterplot.
 
-\caption{Scatter plot of car weight vs.~miles per gallon}
+\begin{figure}
 
-{\centering \includegraphics{plots/plot3.png}
+\caption{\label{fig-plot3-scatterplot}Miles per gallon by car weight}
+
+\centering{
+
+\includegraphics{data-visualization_files/figure-pdf/fig-plot3-scatterplot-1.pdf}
 
 }
 
 \end{figure}%
-
-\includegraphics{data-visualization_files/figure-pdf/Scatterplot-1.pdf}
 
 \subsection{Intermediate Plots}\label{intermediate-plots}
 
@@ -893,7 +708,19 @@ information?
 
 the mean for each cylinder type \& the standard deviation.
 
-\includegraphics{data-visualization_files/figure-pdf/Boxplot-1.pdf}
+Figure~\ref{fig-plot4-boxplot} shows my attempt to graph out the
+boxplot.
+
+\begin{figure}[!htbp]
+
+{\caption{{Miles per Gallon by cylinder}{\label{fig-plot4-boxplot}}}}
+
+\includegraphics{data-visualization_files/figure-pdf/fig-plot4-boxplot-1.pdf}
+
+{\noindent \emph{Note.} This graph shows miles per gallon when the car
+has 4, 6, or 8 cylinders.}
+
+\end{figure}
 
 \subsubsection{Faceted scatter plot}\label{faceted-scatter-plot}
 
@@ -926,11 +753,23 @@ information?
 
 standard deviation (grey area), slope \& intercept
 
+Figure~\ref{fig-plot5-faceted-scatterplot} shows my attempt to graph out
+the faceted scatterplot.
+
 \begin{verbatim}
 `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\includegraphics{data-visualization_files/figure-pdf/Faceted Scatterplot-1.pdf}
+\begin{figure}[!htbp]
+
+{\caption{{Weight vs.~displacement by MPG
+category}{\label{fig-plot5-faceted-scatterplot}}}}
+
+\includegraphics{data-visualization_files/figure-pdf/fig-plot5-faceted-scatterplot-1.pdf}
+
+{\noindent \emph{Note.} Linear regression was used in this example.}
+
+\end{figure}
 
 \subsubsection{Stacked bar plot}\label{stacked-bar-plot}
 
@@ -962,6 +801,9 @@ What additional information is required to produce this plot? What
 layers or aesthetics would you need to add to the plot to include this
 information?
 
+Figure~\ref{fig-plot6-stacked-barplot} shows my ability to graph out the
+stacked barplot.
+
 \begin{verbatim}
 # A tibble: 32 x 12
    miles_per_g cylinders displacement horsepower rear_axle_ratio weight
@@ -989,7 +831,34 @@ information?
 [1] "Class 4"
 \end{verbatim}
 
-\includegraphics{data-visualization_files/figure-pdf/Stacked barplot-1.pdf}
+\begin{figure}
+
+\caption{\label{fig-plot6-stacked-barplot}Stacked barplot of frequency
+by weight class categorized by automatic or manual transmission type}
+
+\centering{
+
+\includegraphics{data-visualization_files/figure-pdf/fig-plot6-stacked-barplot-1.pdf}
+
+}
+
+\end{figure}%
+
+I am testing the function knitr:include\_graphics() that inserts
+external image in the folder ``plots'', so I am importing plot 6 from
+the folder to compare it with Figure~\ref{fig-plot6-stacked-barplot}.
+
+\begin{figure}
+
+\caption{\label{fig-plot6-for-comparison}}
+
+\centering{
+
+\includegraphics{plots/plot6.png}
+
+}
+
+\end{figure}%
 
 \section{Review}\label{review}
 
@@ -1021,25 +890,15 @@ For each optional plot you create or extend, include a brief description
 of the plot below the chunk and any additional information you think is
 relevant.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{plot7 }\OtherTok{\textless{}{-}}\NormalTok{ mtcars.viz }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{ (}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ miles\_per\_g, }\AttributeTok{y =}\NormalTok{ weight, }\AttributeTok{color =}\NormalTok{ engine)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{ (}\AttributeTok{alpha =} \FloatTok{0.4}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{ (}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{ () }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{ (}\AttributeTok{caption =} \StringTok{"I love Doraemon."}\NormalTok{,}
-        \AttributeTok{x =} \StringTok{"Miles per Gallon"}\NormalTok{,}
-        \AttributeTok{y =} \StringTok{"Car weight"}\NormalTok{,}
-        \AttributeTok{title =} \StringTok{"The relationship between mpg and weight by engine"}\NormalTok{)}
-\NormalTok{plot7}
-\end{Highlighting}
-\end{Shaded}
+Figure~\ref{fig-optional-plot-1} graphs out the The relationship between
+mpg and weight by engine. This graph shows how engine type may lead to
+different predictions of mpg on car weight.
 
 \begin{verbatim}
 `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\begin{figure}[H]
+\begin{figure}
 
 \caption{\label{fig-optional-plot-1}The relationship between mpg and
 weight by engine}
@@ -1052,41 +911,9 @@ weight by engine}
 
 \end{figure}%
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{plot6}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{data-visualization_files/figure-pdf/Compare resultsusing include_graphics()-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{ (}\StringTok{"plots/plot6.png"}\NormalTok{) }\CommentTok{\#Compare with the original ones in the folder "plots"}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{plots/plot6.png}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggsave}\NormalTok{(}\StringTok{"Distribution of transmission types by weight class.png"}\NormalTok{, plot6, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{width =} \DecValTok{7}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{path =} \StringTok{"/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots"}\NormalTok{)}
-\FunctionTok{ggsave}\NormalTok{(}\StringTok{"Stacked bar plot of transmission type by weight class.png"}\NormalTok{, plot5, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{width =} \DecValTok{7}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{path =} \StringTok{"/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggsave}\NormalTok{(}\StringTok{"Miles per Gallon by cylinder.png"}\NormalTok{, plot4, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{width =} \DecValTok{7}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{path =} \StringTok{"/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots"}\NormalTok{)}
-\FunctionTok{ggsave}\NormalTok{(}\StringTok{"Scatterplot of miles per Gallon by cylinder.png"}\NormalTok{, plot3, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{width =} \DecValTok{7}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{path =} \StringTok{"/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots"}\NormalTok{)}
-\FunctionTok{ggsave}\NormalTok{(}\StringTok{"The number of cars by cylinder.png"}\NormalTok{, plot2, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{width =} \DecValTok{7}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{path =} \StringTok{"/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots"}\NormalTok{)}
-\FunctionTok{ggsave}\NormalTok{(}\StringTok{"Counting by weight.png"}\NormalTok{, plot1, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{width =} \DecValTok{7}\NormalTok{, }\AttributeTok{height =} \DecValTok{5}\NormalTok{, }\AttributeTok{path =} \StringTok{"/Users/lisazhu/Desktop/D2MR/objectives1to5/my plots"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \section{Submission \& Assessment}\label{submission-assessment}
 
