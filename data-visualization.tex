@@ -140,7 +140,7 @@
 
 \leftheader{Zhu}
 
-\date{2025-02-21}
+\date{2025-02-23}
 
 
 \abstract{This document analyzes the mcar dataset, and presents the
@@ -551,9 +551,9 @@ type}{\label{tbl-mean-median-sd-of-mpg-for-each-cylinder-type}}}
 \end{table}
 
 Figure~\ref{fig-mean-median-sd-of-mpg-for-each-cylinder-type} visualizes
-the table above.
+the table Table~\ref{tbl-mean-median-sd-of-mpg-for-each-cylinder-type}.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-mean-median-sd-of-mpg-for-each-cylinder-type}mean,
 median, \& sd of miles per gallon for each cylinder type}
@@ -593,9 +593,10 @@ Engine & Count & Percentage\\
 frequency and proportion of engine by type
 
 Figure~\ref{fig-frequency-and-proportion-of-engine-being-v-shape-or-straight}
-visualizes the above table.
+visualizes
+Table~\ref{tbl-frequency-and-proportion-of-engine-being-v-shape-or-straight}.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-frequency-and-proportion-of-engine-being-v-shape-or-straight}mean,
 median, \& sd of miles per gallon for each cylinder type}
@@ -622,7 +623,7 @@ Recreate this histogram of car weight:
 \includegraphics{plots/plot1.png} Figure~\ref{fig-plot1-histogram} shows
 my attempt to graph out the histogram graph.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 
 {\caption{{Counting by weight}{\label{fig-plot1-histogram}}}}
 
@@ -639,7 +640,7 @@ Recreate this bar plot of the number of cylinders:
 \includegraphics{plots/plot2.png} Figure~\ref{fig-plot2-barplot} shows
 my attempt to graph out the barplot.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 
 {\caption{{The number of cars by cylinder}{\label{fig-plot2-barplot}}}}
 
@@ -657,7 +658,7 @@ Recreate this scatter plot of car weight vs.~miles per gallon:
 \includegraphics{plots/plot3.png} Figure~\ref{fig-plot3-scatterplot}
 shows my attempt to graph out the scatterplot.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-plot3-scatterplot}Miles per gallon by car weight}
 
@@ -711,7 +712,7 @@ the mean for each cylinder type \& the standard deviation.
 Figure~\ref{fig-plot4-boxplot} shows my attempt to graph out the
 boxplot.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 
 {\caption{{Miles per Gallon by cylinder}{\label{fig-plot4-boxplot}}}}
 
@@ -760,7 +761,7 @@ the faceted scatterplot.
 `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 
 {\caption{{Weight vs.~displacement by MPG
 category}{\label{fig-plot5-faceted-scatterplot}}}}
@@ -804,34 +805,7 @@ information?
 Figure~\ref{fig-plot6-stacked-barplot} shows my ability to graph out the
 stacked barplot.
 
-\begin{verbatim}
-# A tibble: 32 x 12
-   miles_per_g cylinders displacement horsepower rear_axle_ratio weight
-         <dbl>     <dbl>        <dbl>      <dbl>           <dbl>  <dbl>
- 1        21           6         160         110            3.9    2.62
- 2        21           6         160         110            3.9    2.88
- 3        22.8         4         108          93            3.85   2.32
- 4        21.4         6         258         110            3.08   3.22
- 5        18.7         8         360         175            3.15   3.44
- 6        18.1         6         225         105            2.76   3.46
- 7        14.3         8         360         245            3.21   3.57
- 8        24.4         4         147.         62            3.69   3.19
- 9        22.8         4         141.         95            3.92   3.15
-10        19.2         6         168.        123            3.92   3.44
-# i 22 more rows
-# i 6 more variables: mile_time <dbl>, engine <fct>, transmission <fct>,
-#   gear <dbl>, carb <dbl>, auto_or_man <chr>
-\end{verbatim}
-
-\begin{verbatim}
-[1] "Class 2"
-\end{verbatim}
-
-\begin{verbatim}
-[1] "Class 4"
-\end{verbatim}
-
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-plot6-stacked-barplot}Stacked barplot of frequency
 by weight class categorized by automatic or manual transmission type}
@@ -848,7 +822,7 @@ I am testing the function knitr:include\_graphics() that inserts
 external image in the folder ``plots'', so I am importing plot 6 from
 the folder to compare it with Figure~\ref{fig-plot6-stacked-barplot}.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-plot6-for-comparison}}
 
@@ -898,7 +872,7 @@ different predictions of mpg on car weight.
 `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-optional-plot-1}The relationship between mpg and
 weight by engine}

@@ -3,6 +3,9 @@ title: "Level 1 Data Visualization: Plot the mtcars Dataset"
     #I have another format below. Having two formats led to an error message "ERROR: YAMLException: duplicated mapping key (data visualization.qmd, 45:1)". So I am deleting the format here, and preserving the one below.
 date: "`r Sys.Date()`"
 shorttitle: "Data Visualization Mini-project"
+knitr:
+  opts_chunk: 
+    warning: false
 author: 
   - name: Lisa Zhu
     corresponding: true
@@ -43,14 +46,17 @@ format:
   apaquarto-html: default
   apaquarto-typst: 
     keep-typ: true
-    #list-of-figures: true
-    #list-of-tables: true
-    #toc: true
+    list-of-figures: true
+    list-of-tables: true
+    toc: true
   apaquarto-pdf:
     documentmode: man
     keep-tex: true
     list-of-figures: true
     list-of-tables: true
+    fig-width: 7
+    fig-height: 3
+    out-width: 40%
 ---
 
 # Objective
@@ -215,7 +221,7 @@ stats1 <- stats %>%
 stats1
 ```
 @fig-mean-median-sd-of-mpg-for-each-cylinder-type visualizes the table @tbl-mean-median-sd-of-mpg-for-each-cylinder-type.
-```{r Graph Descriptive Analysis 1, echo = FALSE}
+```{r Graph Descriptive Analysis 1, echo = FALSE, fig.pos="H"}
 #| label: fig-mean-median-sd-of-mpg-for-each-cylinder-type
 #| fig-cap: mean, median, & sd of miles per gallon for each cylinder type
 
@@ -247,7 +253,7 @@ stats2
 ```
 
 @fig-frequency-and-proportion-of-engine-being-v-shape-or-straight visualizes @tbl-frequency-and-proportion-of-engine-being-v-shape-or-straight.
-```{r Graph Descriptive Data Analysis 2, echo = FALSE}
+```{r Graph Descriptive Data Analysis 2, echo = FALSE, fig.pos="H"}
 #| label: fig-frequency-and-proportion-of-engine-being-v-shape-or-straight
 #| fig-cap: mean, median, & sd of miles per gallon for each cylinder type
 
@@ -274,7 +280,7 @@ Recreate this histogram of car weight:
 
 ![Histogram of car weight](plots/plot1.png)
 @fig-plot1-histogram shows my attempt to graph out the histogram graph.
-```{r Histogram, echo = FALSE}
+```{r Histogram, echo = FALSE, fig.pos = "H"}
 #| label: fig-plot1-histogram
 #| fig-cap: Counting by weight
 #| apa-note: "The number of cars by weight."
@@ -295,7 +301,7 @@ Recreate this bar plot of the number of cylinders:
 
 ![Bar plot of cylinder count](plots/plot2.png)
 @fig-plot2-barplot shows my attempt to graph out the barplot.
-```{r Barplot, echo = FALSE}
+```{r Barplot, echo = FALSE, fig.pos = "H"}
 #| label: fig-plot2-barplot
 #| fig-cap: The number of cars by cylinder
 #| apa-note: "This is graph showing the number of cars by cylinder."
@@ -320,7 +326,7 @@ Recreate this scatter plot of car weight vs. miles per gallon:
 
 ![Scatter plot of car weight vs. miles per gallon](plots/plot3.png)
 @fig-plot3-scatterplot shows my attempt to graph out the scatterplot.
-```{r Scatterplot, echo = FALSE}
+```{r Scatterplot, echo = FALSE, fig.pos = "H"}
 #| label: fig-plot3-scatterplot
 #| fig-cap: Miles per gallon by car weight
 #| fig-width: 5
@@ -360,7 +366,7 @@ What additional information is required to produce this plot? What layers or aes
 the mean for each cylinder type & the standard deviation.
 
 @fig-plot4-boxplot shows my attempt to graph out the boxplot.
-```{r Boxplot, echo = FALSE}
+```{r Boxplot, echo = FALSE, fig.pos = "H"}
 #| label: fig-plot4-boxplot
 #| fig-cap: Miles per Gallon by cylinder
 #| apa-note: "This graph shows miles per gallon when the car has 4, 6, or 8 cylinders."
@@ -403,7 +409,7 @@ What additional information is required to produce this plot? What layers or aes
 standard deviation (grey area), slope & intercept
 
 @fig-plot5-faceted-scatterplot shows my attempt to graph out the faceted scatterplot.
-```{r Faceted Scatterplot, echo = FALSE}
+```{r Faceted Scatterplot, echo = FALSE, fig.pos = "H"}
 #| label: fig-plot5-faceted-scatterplot
 #| fig-cap: Weight vs. displacement by MPG category
 #| apa-note: "Linear regression was used in this example."
@@ -454,11 +460,9 @@ What additional information is required to produce this plot? What layers or aes
 <!-- answer below -->
 
 @fig-plot6-stacked-barplot shows my ability to graph out the stacked barplot.
-```{r Stacked barplot, echo = FALSE}
-#| label: fig-plot6-stacked-barplot
-#| fig-cap: Stacked barplot of frequency by weight class categorized by automatic or manual transmission type
-#| fig-alt: "Magic beans can fly."
-#| outwidth: 40%
+
+```{r prep for stacked barplot, include = FALSE}
+#| label: prep for stacked barplot
 
 library(tidyverse)
 view (mtcars.viz)
@@ -467,6 +471,13 @@ mtcars.viz %>% mutate (auto_or_man = ifelse (transmission == "1", "Man.", "Auto"
 #Attempt 1: to output five classes (didn't work)
 Class_output (2.1)
 Class_output (4.2)
+```
+
+```{r Stacked barplot, echo = FALSE, fig.pos = "H"}
+#| label: fig-plot6-stacked-barplot
+#| fig-cap: Stacked barplot of frequency by weight class categorized by automatic or manual transmission type
+#| fig-alt: "Magic beans can fly."
+#| outwidth: 40%
 
 #Attempt 2 using case_when worked!
 #I used forcats here!
@@ -495,7 +506,7 @@ plot6
 
 I am testing the function knitr:include_graphics() that inserts external image in the folder "plots", so I am importing plot 6 from the folder to compare it with @fig-plot6-stacked-barplot. 
 
-```{r Compare results example, echo = FALSE}
+```{r Compare results example, echo = FALSE, fig.pos = "H"}
 #| label: fig-plot6-for-comparison
 
 knitr::include_graphics ("plots/plot6.png") #Compare with the original ones in the folder "plots"
@@ -520,7 +531,7 @@ For each optional plot you create or extend, include a brief description of the 
 
 @fig-optional-plot-1 graphs out the The relationship between mpg and weight by engine. This graph shows how engine type may lead to different predictions of mpg on car weight.
 
-```{r Does weight predict mpg? Does having v-shaped or straight engine change this prediction?, echo = FALSE}
+```{r Does weight predict mpg? Does having v-shaped or straight engine change this prediction?, echo = FALSE, fig.pos = "H"}
 #| label: fig-optional-plot-1
 #| fig-cap: The relationship between mpg and weight by engine
 
