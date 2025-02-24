@@ -284,8 +284,6 @@ Recreate this histogram of car weight:
 #| label: fig-plot1-histogram
 #| fig-cap: Counting by weight
 #| apa-note: "The number of cars by weight."
-#| fig-width: 5
-#| fig-height: 5
 
 plot1 <- mtcars.viz %>%
   ggplot (aes (x = weight)) + 
@@ -305,8 +303,6 @@ Recreate this bar plot of the number of cylinders:
 #| label: fig-plot2-barplot
 #| fig-cap: The number of cars by cylinder
 #| apa-note: "This is graph showing the number of cars by cylinder."
-#| fig-width: 5
-#| fig-height: 5
 
 #I used forcats here!
 plot2 <- mtcars.viz %>% 
@@ -437,7 +433,26 @@ plot5
   #                  gp = gpar(fontsize = 8, col = "black")),
    # xmin = Inf, xmax = Inf, ymin = -Inf, ymax = -Inf)
 ```
+```{r Using facet_grid(), echo=FALSE, fig.pos="H"}
+#| label: using facet_grid()
+#| fig-cap: displacement over weight segmented by mpg and transmission
+#| apa-note: Rabbits and squirrels
+#| fig-width: 7
+#| fig-height: 6
 
+plot5.1 <- mtcars.viz %>%
+  mutate (low_high_mpg = ifelse(miles_per_g > mean(miles_per_g), "high mpg", "low mpg")) %>%
+  mutate (transcat = ifelse(transmission == 0, "auto", "manual")) %>%
+  ggplot (aes (x = weight, y = displacement)) +
+  geom_point(color = "skyblue", shape = 2) +
+  facet_grid(transcat ~ low_high_mpg, scales = "fixed") +
+  geom_smooth (method = "lm", se = TRUE, color = "purple", linetype = "dashed") +
+  theme_minimal() +
+  xlim (c(0, 6)) +
+  labs (caption = "I definitely know thing about cars and mtcars.") 
+
+plot5.1
+```
 
 ### Stacked bar plot
 
@@ -461,7 +476,7 @@ What additional information is required to produce this plot? What layers or aes
 
 @fig-plot6-stacked-barplot shows my ability to graph out the stacked barplot.
 
-```{r prep for stacked barplot, include = FALSE}
+```{r prep for stacked barplot, include = FALSE, fig.pos="H"}
 #| label: prep for stacked barplot
 
 library(tidyverse)
